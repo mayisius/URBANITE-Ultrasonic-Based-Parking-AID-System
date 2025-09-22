@@ -17,6 +17,10 @@
 
 /* Defines and enums ----------------------------------------------------------*/
 /* Defines */
+#define HIGH 1              //          NEW         //
+#define LOW 0               //          NEW         //
+
+
 #define BIT_POS_TO_MASK(x) (0x01 << (x))                                                                      /*!< Convert the index of a bit into a mask by left shifting */
 #define BASE_MASK_TO_POS(m, p) ((m) << (p))                                                                   /*!< Move a mask defined in the LSBs to upper positions by shifting left p bits */
 #define GET_PIN_IRQN(pin) ((pin) >= 10 ? EXTI15_10_IRQn : ((pin) >= 5 ? EXTI9_5_IRQn : (EXTI0_IRQn + (pin)))) /*!< Compute the IRQ number associated to a GPIO pin */
@@ -164,5 +168,33 @@ void stm32f4_system_gpio_exti_enable(uint8_t pin, uint8_t priority, uint8_t subp
  * @retval None
  */
 void stm32f4_system_gpio_exti_disable(uint8_t pin);
+
+/**
+ * @brief Read the digital value of a GPIO.
+ * 
+ * @param p_port Port of the GPIO (CMSIS struct like)
+ * @param pin 	Pin/line of the GPIO (index from 0 to 15)
+ * @return true if the GPIO was HIGH
+ * @return false if the GPIO was LOW
+ */
+bool stm32f4_system_gpio_read (GPIO_TypeDef *p_port, uint8_t pin);
+
+/**
+ * @brief Write a digital value in a GPIO atomically.
+ * 
+ * @param p_port Port of the GPIO (CMSIS struct like)
+ * @param pin Pin/line of the GPIO (index from 0 to 15)
+ * @param value Boolean value to set the GPIO to HIGH (1, true) or LOW (0, false)
+ */
+void stm32f4_system_gpio_write (GPIO_TypeDef *p_port,  uint8_t 	pin, bool value);
+
+/**
+ * @brief Toggle the value of a GPIO.
+ * 
+ * @param p_port Port of the GPIO (CMSIS struct like)
+ * @param pin Pin/line of the GPIO (index from 0 to 15)
+ */
+void stm32f4_system_gpio_toggle (GPIO_TypeDef *p_port, uint8_t pin);
+
 
 #endif /* STM32F4_SYSTEM_H_ */

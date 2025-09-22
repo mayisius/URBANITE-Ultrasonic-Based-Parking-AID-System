@@ -48,4 +48,37 @@ void port_system_delay_ms(uint32_t ms);
  */
 void port_system_delay_until_ms(uint32_t *t, uint32_t ms);
 
+
+/**
+ * @brief Resume Tick increment.
+ * 
+ */
+void port_system_systick_resume(void);
+
+/**
+ * @brief Suspend Tick increment.
+ * 
+ */
+void port_system_systick_suspend(void);
+
+
+
+/**
+ * @brief Set the system in sleep mode for low power consumption.
+ * 
+ */
+void port_system_power_sleep(void);
+
+/**
+ * @brief Set the system in stop mode for low power consumption.
+ * 
+ */
+void port_system_power_stop(void);
+
+/**
+ * @brief Enable low power consumption in sleep mode.
+ * 
+ */
+void port_system_sleep(void);
+
 #endif /* PORT_SYSTEM_H_ */
